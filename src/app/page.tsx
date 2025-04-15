@@ -118,7 +118,7 @@ export default function Home() {
 
         const link = document.createElement("a");
         link.href = processedImage;
-        link.download = "movie-trailer-image.png";
+        link.download = "original-author-caption.png";
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
