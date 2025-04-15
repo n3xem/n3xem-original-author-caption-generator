@@ -21,6 +21,34 @@ export default function Home() {
     const [authorColor, setAuthorColor] = useState<string>("#FFA500"); // 原作と作者名の色（デフォルトはオレンジ）
     const [titleColor, setTitleColor] = useState<string>("#FFFFFF"); // 作品名の色（デフォルトは白）
 
+    // コンポーネントのマウント時に白い背景画像を生成
+    useEffect(() => {
+        createWhiteBackground();
+    }, []);
+
+    // 白い背景画像を生成する関数
+    const createWhiteBackground = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = 800;
+        canvas.height = 400;
+        const ctx = canvas.getContext('2d');
+
+        if (ctx) {
+            // 白い背景を描画
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // 「画像をアップロード」というテキストを中央に表示
+            ctx.fillStyle = '#888888';
+            ctx.font = '20px "Noto Sans JP", sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('サンプル画像（画像をアップロードしてください）', canvas.width / 2, canvas.height / 2);
+
+            // 生成した画像をセット
+            setImage(canvas.toDataURL('image/png'));
+        }
+    };
+
     const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (!file) return;
