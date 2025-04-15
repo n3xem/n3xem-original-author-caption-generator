@@ -388,6 +388,9 @@ export default function Home() {
                     </div>
                 )}
             </div>
+            <footer className="mt-8 text-center text-gray-600 text-sm">
+                <p>このツールは<a href="https://x.com/mujina_kinokuni/status/1911785786040861048" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">こちらのツイート</a>にインスパイアされています。</p>
+            </footer>
         </div>
     );
 }
