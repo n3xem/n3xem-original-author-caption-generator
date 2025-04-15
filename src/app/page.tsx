@@ -153,6 +153,9 @@ export default function Home() {
                                     alt="Processed"
                                     className="max-w-full rounded border border-gray-300"
                                 />
+                                <p className="mt-2 text-sm text-gray-600 text-center">
+                                    スマホをご利用の場合は、画像を長押しして「画像を保存」を選択して保存してください。（写真フォルダに保存されるのでおすすめです。）
+                                </p>
                             </div>
                         )}
 
