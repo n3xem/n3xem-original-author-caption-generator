@@ -7,8 +7,8 @@ export default function Home() {
     const [processedImage, setProcessedImage] = useState<string | null>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [textLine1, setTextLine1] = useState<string>("原 作");
-    const [textLine2, setTextLine2] = useState<string>("青山 剛昌");
-    const [textLine3, setTextLine3] = useState<string>("「名探偵コナン」（小学館「週刊少年サンデー」連載中）");
+    const [textLine2, setTextLine2] = useState<string>("山下 一郎");
+    const [textLine3, setTextLine3] = useState<string>("「名探偵タロウ」（星月出版「週刊少年スター」連載中）");
     const [fontSize1, setFontSize1] = useState<number>(60); // 原作のフォントサイズ
     const [fontSize2, setFontSize2] = useState<number>(70); // 作者名のフォントサイズ
     const [fontSize3, setFontSize3] = useState<number>(12); // 作品名のフォントサイズ
