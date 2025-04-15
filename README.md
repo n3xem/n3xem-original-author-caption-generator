@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 原作者テロップジェネレーター
 
-## Getting Started
+このアプリケーションは、アニメの映画化作品でよく見られる「原作：○○」というテロップ（キャプション）を簡単に生成するためのツールです。
 
-First, run the development server:
+## 機能
+
+- 画像アップロード機能
+- テロップのテキスト・フォントサイズ・色などのカスタマイズ
+- 生成した画像のダウンロード
+
+## 使い方
+
+1. 画像をアップロードする
+2. テキストの内容をカスタマイズする
+   - 1行目：「原 作」などのテキスト
+   - 2行目：作者名
+   - 3行目：作品名や掲載情報
+3. フォントサイズ、位置、色などを調整する
+4. 完成した画像をダウンロードする
+
+## 開発環境
+
+このプロジェクトは[Next.js](https://nextjs.org)で構築されており、[`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app)でブートストラップされています。
+
+### 開発サーバーの起動
 
 ```bash
 npm run dev
-# or
+# または
 yarn dev
-# or
+# または
 pnpm dev
-# or
+# または
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[http://localhost:3000](http://localhost:3000)にアクセスすると結果を確認できます。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 技術スタック
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- React 19
+- Next.js 15.3.0
+- TypeScript
+- TailwindCSS 4
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+© 2025 原作者テロップジェネレーター
