@@ -1,6 +1,6 @@
 # 原作者テロップジェネレーター
 
-https://www.origin-author-gen.site/
+https://origin-author-gen.site/
 
 <img width="1548" alt="Screenshot 2025-04-16 at 2 54 47" src="https://github.com/user-attachments/assets/a3cfc1d9-eb9f-4731-82e0-b36120099c59" />
 
