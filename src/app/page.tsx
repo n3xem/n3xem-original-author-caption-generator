@@ -142,6 +142,31 @@ export default function Home() {
                     />
                 </div>
 
+                {image && (
+                    <div className="mb-6 flex flex-col items-center">
+                        <h2 className="text-xl font-semibold mb-4 text-gray-800">プレビュー</h2>
+                        <canvas ref={canvasRef} className="hidden" />
+                        {processedImage && (
+                            <div className="mt-2">
+                                <img
+                                    src={processedImage}
+                                    alt="Processed"
+                                    className="max-w-full rounded border border-gray-300"
+                                />
+                            </div>
+                        )}
+
+                        {processedImage && (
+                            <button
+                                onClick={handleDownload}
+                                className="mt-6 bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-lg font-semibold"
+                            >
+                                画像をダウンロード
+                            </button>
+                        )}
+                    </div>
+                )}
+
                 <div className="mb-6">
                     <h2 className="text-xl font-semibold mb-4 text-gray-800">テキスト設定</h2>
                     <div className="space-y-4">
@@ -381,31 +406,6 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-
-                {image && (
-                    <div className="mt-6 flex flex-col items-center">
-                        <h2 className="text-xl font-semibold mb-4 text-gray-800">プレビュー</h2>
-                        <canvas ref={canvasRef} className="hidden" />
-                        {processedImage && (
-                            <div className="mt-2">
-                                <img
-                                    src={processedImage}
-                                    alt="Processed"
-                                    className="max-w-full rounded border border-gray-300"
-                                />
-                            </div>
-                        )}
-
-                        {processedImage && (
-                            <button
-                                onClick={handleDownload}
-                                className="mt-6 bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-lg font-semibold"
-                            >
-                                画像をダウンロード
-                            </button>
-                        )}
-                    </div>
-                )}
             </div>
             <footer className="mt-8 text-center text-gray-600 text-sm">
                 <p>このツールは<a href="https://x.com/mujina_kinokuni/status/1911785786040861048" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">こちらのツイート</a>にインスパイアされています。</p>
