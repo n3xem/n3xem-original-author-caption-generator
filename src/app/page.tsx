@@ -13,7 +13,7 @@ export default function Home() {
     const [fontSize2, setFontSize2] = useState<number>(70); // 作者名のフォントサイズ
     const [fontSize3, setFontSize3] = useState<number>(12); // 作品名のフォントサイズ
     const [posY1, setPosY1] = useState<number>(0); // 原作の位置調整（相対値）
-    const [posY2, setPosY2] = useState<number>(0); // 作者名の位置調整（相対値）
+    const [posY2, setPosY2] = useState<number>(-7); // 作者名の位置調整（相対値）
     const [posY3, setPosY3] = useState<number>(0); // 作品名の位置調整（相対値）
     const [shadowOffset, setShadowOffset] = useState<number>(2); // 影のオフセット
     const [shadowBlur, setShadowBlur] = useState<number>(2); // 影のぼかし
