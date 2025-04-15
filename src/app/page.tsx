@@ -390,6 +390,7 @@ export default function Home() {
             </div>
             <footer className="mt-8 text-center text-gray-600 text-sm">
                 <p>このツールは<a href="https://x.com/mujina_kinokuni/status/1911785786040861048" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">こちらのツイート</a>にインスパイアされています。</p>
+                <p className="mt-2">制作: <a href="https://x.com/yukyan_p" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">@yukyan_p</a></p>
             </footer>
         </div>
     );
