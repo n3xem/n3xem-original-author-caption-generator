@@ -9,13 +9,14 @@ export default function Home() {
     const [textLine1, setTextLine1] = useState<string>("原 作");
     const [textLine2, setTextLine2] = useState<string>("山下 一郎");
     const [textLine3, setTextLine3] = useState<string>("「名探偵タロウ」（星月出版「週刊少年スター」連載中）");
-    const [fontSize1, setFontSize1] = useState<number>(60); // 原作のフォントサイズ
+    const [fontSize1, setFontSize1] = useState<number>(57); // 原作のフォントサイズ
     const [fontSize2, setFontSize2] = useState<number>(70); // 作者名のフォントサイズ
     const [fontSize3, setFontSize3] = useState<number>(12); // 作品名のフォントサイズ
     const [posY1, setPosY1] = useState<number>(0); // 原作の位置調整（相対値）
     const [posY2, setPosY2] = useState<number>(-7); // 作者名の位置調整（相対値）
     const [posY3, setPosY3] = useState<number>(0); // 作品名の位置調整（相対値）
-    const [shadowOffset, setShadowOffset] = useState<number>(2); // 影のオフセット
+    const [shadowOffset, setShadowOffset] = useState<number>(1); // 影のオフセット
+    const [shadowOffset3, setShadowOffset3] = useState<number>(1); // 3行目の影のオフセット
     const [shadowBlur, setShadowBlur] = useState<number>(0); // 影のぼかし
     const [authorColor, setAuthorColor] = useState<string>("#FFA500"); // 原作と作者名の色（デフォルトはオレンジ）
     const [titleColor, setTitleColor] = useState<string>("#FFFFFF"); // 作品名の色（デフォルトは白）
@@ -65,7 +66,7 @@ export default function Home() {
             const textY = height - 30;
 
             // 文字列を影付きで描画する関数
-            const drawTextWithShadow = (text: string, y: number, fontSize: number, color: string, isBold: boolean = false) => {
+            const drawTextWithShadow = (text: string, y: number, fontSize: number, color: string, isBold: boolean = false, customShadowOffset: number = shadowOffset) => {
                 // Noto Sans JPを使用（原作と作者名はより太く）
                 const fontWeight = isBold ? 900 : 700;
                 ctx.font = `${fontWeight} ${fontSize}px 'Noto Sans JP', sans-serif`;
@@ -75,8 +76,8 @@ export default function Home() {
 
                 // 影の設定
                 ctx.shadowColor = "rgba(0, 0, 0, 0.7)";
-                ctx.shadowOffsetX = shadowOffset;
-                ctx.shadowOffsetY = shadowOffset;
+                ctx.shadowOffsetX = customShadowOffset;
+                ctx.shadowOffsetY = customShadowOffset;
                 ctx.shadowBlur = shadowBlur;
 
                 // テキストを描画
@@ -97,7 +98,7 @@ export default function Home() {
 
             drawTextWithShadow(textLine1, line1Y, fontSize1, authorColor, true); // 原作は太く
             drawTextWithShadow(textLine2, line2Y, fontSize2, authorColor, true); // 作者名も太く
-            drawTextWithShadow(textLine3, line3Y, fontSize3, titleColor);
+            drawTextWithShadow(textLine3, line3Y, fontSize3, titleColor, false, shadowOffset3); // 3行目は別の影オフセット値を使用
 
             // 処理後の画像をセット
             setProcessedImage(canvas.toDataURL("image/png"));
@@ -110,7 +111,7 @@ export default function Home() {
         if (image) {
             processImage();
         }
-    }, [image, textLine1, textLine2, textLine3, fontSize1, fontSize2, fontSize3, posY1, posY2, posY3, shadowOffset, shadowBlur, authorColor, titleColor]);
+    }, [image, textLine1, textLine2, textLine3, fontSize1, fontSize2, fontSize3, posY1, posY2, posY3, shadowOffset, shadowOffset3, shadowBlur, authorColor, titleColor]);
 
     const handleDownload = () => {
         if (!processedImage) return;
@@ -331,7 +332,7 @@ export default function Home() {
                         <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label className="block text-gray-800 text-sm font-bold mb-2" htmlFor="shadow-offset">
-                                    影のオフセット: {shadowOffset}px
+                                    影のオフセット (1・2行目): {shadowOffset}px
                                 </label>
                                 <input
                                     id="shadow-offset"
@@ -344,6 +345,24 @@ export default function Home() {
                                     className="w-full"
                                 />
                             </div>
+                            <div>
+                                <label className="block text-gray-800 text-sm font-bold mb-2" htmlFor="shadow-offset3">
+                                    影のオフセット (3行目): {shadowOffset3}px
+                                </label>
+                                <input
+                                    id="shadow-offset3"
+                                    type="range"
+                                    min="0"
+                                    max="5"
+                                    step="0.5"
+                                    value={shadowOffset3}
+                                    onChange={(e) => setShadowOffset3(parseFloat(e.target.value))}
+                                    className="w-full"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label className="block text-gray-800 text-sm font-bold mb-2" htmlFor="shadow-blur">
                                     影のぼかし: {shadowBlur}px
