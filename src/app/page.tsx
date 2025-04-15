@@ -172,7 +172,26 @@ export default function Home() {
 
     return (
         <div className="min-h-screen p-8 flex flex-col items-center justify-center bg-gray-100 font-[var(--font-noto-sans-jp)]">
-            <h1 className="text-3xl font-bold mb-8 text-gray-800">原作者テロップジェネレーター</h1>
+            <h1 className="text-3xl font-bold mb-2 text-gray-800">原作者テロップジェネレーター</h1>
+
+            <button
+                onClick={() => {
+                    // 現在のURLをエンコード
+                    const shareUrl = encodeURIComponent(window.location.href);
+                    // テキストをエンコード
+                    const shareText = encodeURIComponent("原作者テロップジェネレーターで画像を作成してみよう！");
+                    // X(Twitter)共有URL
+                    const twitterUrl = `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`;
+                    // 新しいウィンドウで開く
+                    window.open(twitterUrl, "_blank");
+                }}
+                className="mb-8 bg-black hover:bg-gray-800 text-white py-1 px-4 rounded-full text-sm font-semibold flex items-center justify-center"
+            >
+                <svg className="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                </svg>
+                X(Twitter)で共有
+            </button>
 
             <div className="w-full max-w-3xl bg-white p-6 rounded-lg shadow-md">
                 <div className="mb-6">
@@ -211,6 +230,27 @@ export default function Home() {
                                 className="mt-6 bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-lg font-semibold"
                             >
                                 画像をダウンロード
+                            </button>
+                        )}
+
+                        {processedImage && (
+                            <button
+                                onClick={() => {
+                                    // 現在のURLをエンコード
+                                    const shareUrl = encodeURIComponent(window.location.href);
+                                    // テキストをエンコード
+                                    const shareText = encodeURIComponent("原作者テロップジェネレーターで画像を作成しました！");
+                                    // X(Twitter)共有URL
+                                    const twitterUrl = `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`;
+                                    // 新しいウィンドウで開く
+                                    window.open(twitterUrl, "_blank");
+                                }}
+                                className="mt-3 bg-black hover:bg-gray-800 text-white py-2 px-6 rounded-lg font-semibold flex items-center justify-center"
+                            >
+                                <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                                </svg>
+                                X(Twitter)でサイトを共有
                             </button>
                         )}
                     </div>
