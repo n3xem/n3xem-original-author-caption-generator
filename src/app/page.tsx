@@ -44,8 +44,18 @@ export default function Home() {
             ctx.textAlign = 'center';
             ctx.fillText('サンプル画像（画像をアップロードしてください）', canvas.width / 2, canvas.height / 2);
 
-            // 生成した画像をセット
-            setImage(canvas.toDataURL('image/png'));
+            // 生成した画像をセット（この段階ではまだプレビューに表示されない）
+            const whiteImage = canvas.toDataURL('image/png');
+            setImage(whiteImage);
+
+            // 初回のサンプル画像のみ、少し遅延させて2回描画する
+            // これによりフォント読み込みを確実にする
+            setTimeout(() => {
+                // 同じ画像を再度セットして2回目の描画をトリガー
+                const img = new Image();
+                img.onload = () => renderImage(img);
+                img.src = whiteImage;
+            }, 100);
         }
     };
 
@@ -65,74 +75,82 @@ export default function Home() {
 
         const img = new Image();
         img.onload = () => {
-            const canvas = canvasRef.current!;
-            const ctx = canvas.getContext("2d")!;
-
-            // 画像のアスペクト比を保持しながらキャンバスサイズを設定
-            const maxWidth = 800;
-            const maxHeight = 600;
-            let width = img.width;
-            let height = img.height;
-
-            if (width > maxWidth) {
-                height = (maxWidth / width) * height;
-                width = maxWidth;
-            }
-
-            if (height > maxHeight) {
-                width = (maxHeight / height) * width;
-                height = maxHeight;
-            }
-
-            canvas.width = width;
-            canvas.height = height;
-
-            // 画像を描画
-            ctx.drawImage(img, 0, 0, width, height);
-
-            // 文字の位置を画像の下部に設定
-            const textY = height - 30;
-
-            // 文字列を影付きで描画する関数
-            const drawTextWithShadow = (text: string, y: number, fontSize: number, color: string, isBold: boolean = false, customShadowOffset: number = shadowOffset) => {
-                // Noto Sans JPを使用（原作と作者名はより太く）
-                const fontWeight = isBold ? 900 : 700;
-                ctx.font = `${fontWeight} ${fontSize}px 'Noto Sans JP', sans-serif`;
-                ctx.fillStyle = color;
-                ctx.textAlign = "center";
-                const x = width / 2;
-
-                // 影の設定
-                ctx.shadowColor = "rgba(0, 0, 0, 0.7)";
-                ctx.shadowOffsetX = customShadowOffset;
-                ctx.shadowOffsetY = customShadowOffset;
-                ctx.shadowBlur = shadowBlur;
-
-                // テキストを描画
-                ctx.fillText(text, x, y);
-
-                // 影の設定をリセット
-                ctx.shadowColor = "transparent";
-                ctx.shadowOffsetX = 0;
-                ctx.shadowOffsetY = 0;
-                ctx.shadowBlur = 0;
-            };
-
-            // 3行のテキストを描画（各行に個別のフォントサイズを適用）
-            // フォントサイズに応じて行間を調整（行間を小さくする）
-            const line3Y = textY + posY3; // 位置調整を適用
-            const line2Y = line3Y - fontSize3 - 3 + posY2; // 位置調整を適用
-            const line1Y = line2Y - fontSize2 - 3 + posY1; // 位置調整を適用
-
-            drawTextWithShadow(textLine1, line1Y, fontSize1, authorColor, true); // 原作は太く
-            drawTextWithShadow(textLine2, line2Y, fontSize2, authorColor, true); // 作者名も太く
-            drawTextWithShadow(textLine3, line3Y, fontSize3, titleColor, false, shadowOffset3); // 3行目は別の影オフセット値を使用
-
-            // 処理後の画像をセット
-            setProcessedImage(canvas.toDataURL("image/png"));
+            // 通常のアップロード画像は1回だけ描画
+            renderImage(img);
         };
 
         img.src = image;
+    };
+
+    // 画像描画処理を関数に分離
+    const renderImage = (img: HTMLImageElement) => {
+        if (!canvasRef.current) return;
+
+        const canvas = canvasRef.current;
+        const ctx = canvas.getContext("2d")!;
+
+        // 画像のアスペクト比を保持しながらキャンバスサイズを設定
+        const maxWidth = 800;
+        const maxHeight = 600;
+        let width = img.width;
+        let height = img.height;
+
+        if (width > maxWidth) {
+            height = (maxWidth / width) * height;
+            width = maxWidth;
+        }
+
+        if (height > maxHeight) {
+            width = (maxHeight / height) * width;
+            height = maxHeight;
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+
+        // 画像を描画
+        ctx.drawImage(img, 0, 0, width, height);
+
+        // 文字の位置を画像の下部に設定
+        const textY = height - 30;
+
+        // 文字列を影付きで描画する関数
+        const drawTextWithShadow = (text: string, y: number, fontSize: number, color: string, isBold: boolean = false, customShadowOffset: number = shadowOffset) => {
+            // Noto Sans JPを使用（原作と作者名はより太く）
+            const fontWeight = isBold ? 900 : 700;
+            ctx.font = `${fontWeight} ${fontSize}px 'Noto Sans JP', sans-serif`;
+            ctx.fillStyle = color;
+            ctx.textAlign = "center";
+            const x = width / 2;
+
+            // 影の設定
+            ctx.shadowColor = "rgba(0, 0, 0, 0.7)";
+            ctx.shadowOffsetX = customShadowOffset;
+            ctx.shadowOffsetY = customShadowOffset;
+            ctx.shadowBlur = shadowBlur;
+
+            // テキストを描画
+            ctx.fillText(text, x, y);
+
+            // 影の設定をリセット
+            ctx.shadowColor = "transparent";
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 0;
+            ctx.shadowBlur = 0;
+        };
+
+        // 3行のテキストを描画（各行に個別のフォントサイズを適用）
+        // フォントサイズに応じて行間を調整（行間を小さくする）
+        const line3Y = textY + posY3; // 位置調整を適用
+        const line2Y = line3Y - fontSize3 - 3 + posY2; // 位置調整を適用
+        const line1Y = line2Y - fontSize2 - 3 + posY1; // 位置調整を適用
+
+        drawTextWithShadow(textLine1, line1Y, fontSize1, authorColor, true); // 原作は太く
+        drawTextWithShadow(textLine2, line2Y, fontSize2, authorColor, true); // 作者名も太く
+        drawTextWithShadow(textLine3, line3Y, fontSize3, titleColor, false, shadowOffset3); // 3行目は別の影オフセット値を使用
+
+        // 処理後の画像をセット
+        setProcessedImage(canvas.toDataURL("image/png"));
     };
 
     useEffect(() => {
