@@ -16,7 +16,7 @@ export default function Home() {
     const [posY2, setPosY2] = useState<number>(-7); // 作者名の位置調整（相対値）
     const [posY3, setPosY3] = useState<number>(0); // 作品名の位置調整（相対値）
     const [shadowOffset, setShadowOffset] = useState<number>(2); // 影のオフセット
-    const [shadowBlur, setShadowBlur] = useState<number>(2); // 影のぼかし
+    const [shadowBlur, setShadowBlur] = useState<number>(0); // 影のぼかし
     const [authorColor, setAuthorColor] = useState<string>("#FFA500"); // 原作と作者名の色（デフォルトはオレンジ）
     const [titleColor, setTitleColor] = useState<string>("#FFFFFF"); // 作品名の色（デフォルトは白）
 
@@ -60,16 +60,6 @@ export default function Home() {
 
             // 画像を描画
             ctx.drawImage(img, 0, 0, width, height);
-
-            // 半透明の黒い背景を下部に追加
-            const bgHeight = 140; // 背景の高さを少し大きく
-            const gradient = ctx.createLinearGradient(0, height - bgHeight, 0, height);
-            gradient.addColorStop(0, "rgba(0, 0, 0, 0)");
-            gradient.addColorStop(0.3, "rgba(0, 0, 0, 0.5)");
-            gradient.addColorStop(1, "rgba(0, 0, 0, 0.7)");
-
-            ctx.fillStyle = gradient;
-            ctx.fillRect(0, height - bgHeight, width, bgHeight);
 
             // 文字の位置を画像の下部に設定
             const textY = height - 30;
