@@ -135,11 +135,11 @@ export default function Home() {
 
     return (
         <div className="min-h-screen p-8 flex flex-col items-center justify-center bg-gray-100 font-[var(--font-noto-sans-jp)]">
-            <h1 className="text-3xl font-bold mb-8">原作者テロップジェネレーター</h1>
+            <h1 className="text-3xl font-bold mb-8 text-gray-800">原作者テロップジェネレーター</h1>
 
             <div className="w-full max-w-3xl bg-white p-6 rounded-lg shadow-md">
                 <div className="mb-6">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="image-upload">
+                    <label className="block text-gray-800 text-sm font-bold mb-2" htmlFor="image-upload">
                         画像をアップロード
                     </label>
                     <input
@@ -147,15 +147,15 @@ export default function Home() {
                         type="file"
                         accept="image/*"
                         onChange={handleImageUpload}
-                        className="w-full p-2 border border-gray-300 rounded"
+                        className="w-full p-2 border border-gray-300 rounded text-gray-800"
                     />
                 </div>
 
                 <div className="mb-6">
-                    <h2 className="text-xl font-semibold mb-4">テキスト設定</h2>
+                    <h2 className="text-xl font-semibold mb-4 text-gray-800">テキスト設定</h2>
                     <div className="space-y-4">
                         <div>
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="text-line1">
+                            <label className="block text-gray-800 text-sm font-bold mb-2" htmlFor="text-line1">
                                 1行目
                             </label>
                             <div className="flex gap-4">
@@ -164,10 +164,10 @@ export default function Home() {
                                     type="text"
                                     value={textLine1}
                                     onChange={(e) => setTextLine1(e.target.value)}
-                                    className="w-full p-2 border border-gray-300 rounded"
+                                    className="w-full p-2 border border-gray-300 rounded text-gray-800"
                                 />
                                 <div className="w-48">
-                                    <label className="block text-gray-700 text-xs mb-1" htmlFor="font-size1">
+                                    <label className="block text-gray-800 text-xs mb-1" htmlFor="font-size1">
                                         サイズ: {fontSize1}px
                                     </label>
                                     <input
@@ -182,7 +182,7 @@ export default function Home() {
                                 </div>
                             </div>
                             <div className="mt-2">
-                                <label className="block text-gray-700 text-xs mb-1" htmlFor="pos-y1">
+                                <label className="block text-gray-800 text-xs mb-1" htmlFor="pos-y1">
                                     縦位置: {posY1 > 0 ? `下 ${posY1}px` : posY1 < 0 ? `上 ${Math.abs(posY1)}px` : "中央"}
                                 </label>
                                 <input
@@ -197,7 +197,7 @@ export default function Home() {
                             </div>
                         </div>
                         <div>
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="text-line2">
+                            <label className="block text-gray-800 text-sm font-bold mb-2" htmlFor="text-line2">
                                 2行目
                             </label>
                             <div className="flex gap-4">
@@ -206,10 +206,10 @@ export default function Home() {
                                     type="text"
                                     value={textLine2}
                                     onChange={(e) => setTextLine2(e.target.value)}
-                                    className="w-full p-2 border border-gray-300 rounded"
+                                    className="w-full p-2 border border-gray-300 rounded text-gray-800"
                                 />
                                 <div className="w-48">
-                                    <label className="block text-gray-700 text-xs mb-1" htmlFor="font-size2">
+                                    <label className="block text-gray-800 text-xs mb-1" htmlFor="font-size2">
                                         サイズ: {fontSize2}px
                                     </label>
                                     <input
@@ -224,7 +224,7 @@ export default function Home() {
                                 </div>
                             </div>
                             <div className="mt-2">
-                                <label className="block text-gray-700 text-xs mb-1" htmlFor="pos-y2">
+                                <label className="block text-gray-800 text-xs mb-1" htmlFor="pos-y2">
                                     縦位置: {posY2 > 0 ? `下 ${posY2}px` : posY2 < 0 ? `上 ${Math.abs(posY2)}px` : "中央"}
                                 </label>
                                 <input
@@ -239,7 +239,7 @@ export default function Home() {
                             </div>
                         </div>
                         <div>
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="text-line3">
+                            <label className="block text-gray-800 text-sm font-bold mb-2" htmlFor="text-line3">
                                 3行目
                             </label>
                             <div className="flex gap-4">
@@ -248,10 +248,10 @@ export default function Home() {
                                     type="text"
                                     value={textLine3}
                                     onChange={(e) => setTextLine3(e.target.value)}
-                                    className="w-full p-2 border border-gray-300 rounded"
+                                    className="w-full p-2 border border-gray-300 rounded text-gray-800"
                                 />
                                 <div className="w-48">
-                                    <label className="block text-gray-700 text-xs mb-1" htmlFor="font-size3">
+                                    <label className="block text-gray-800 text-xs mb-1" htmlFor="font-size3">
                                         サイズ: {fontSize3}px
                                     </label>
                                     <input
@@ -266,7 +266,7 @@ export default function Home() {
                                 </div>
                             </div>
                             <div className="mt-2">
-                                <label className="block text-gray-700 text-xs mb-1" htmlFor="pos-y3">
+                                <label className="block text-gray-800 text-xs mb-1" htmlFor="pos-y3">
                                     縦位置: {posY3 > 0 ? `下 ${posY3}px` : posY3 < 0 ? `上 ${Math.abs(posY3)}px` : "中央"}
                                 </label>
                                 <input
@@ -283,7 +283,7 @@ export default function Home() {
 
                         <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="author-color">
+                                <label className="block text-gray-800 text-sm font-bold mb-2" htmlFor="author-color">
                                     原作・作者名の色
                                 </label>
                                 <div className="flex items-center gap-2">
@@ -310,7 +310,7 @@ export default function Home() {
                                 </div>
                             </div>
                             <div>
-                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="title-color">
+                                <label className="block text-gray-800 text-sm font-bold mb-2" htmlFor="title-color">
                                     作品名の色
                                 </label>
                                 <div className="flex items-center gap-2">
@@ -340,7 +340,7 @@ export default function Home() {
 
                         <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="shadow-offset">
+                                <label className="block text-gray-800 text-sm font-bold mb-2" htmlFor="shadow-offset">
                                     影のオフセット: {shadowOffset}px
                                 </label>
                                 <input
@@ -355,7 +355,7 @@ export default function Home() {
                                 />
                             </div>
                             <div>
-                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="shadow-blur">
+                                <label className="block text-gray-800 text-sm font-bold mb-2" htmlFor="shadow-blur">
                                     影のぼかし: {shadowBlur}px
                                 </label>
                                 <input
@@ -375,7 +375,7 @@ export default function Home() {
 
                 {image && (
                     <div className="mt-6 flex flex-col items-center">
-                        <h2 className="text-xl font-semibold mb-4">プレビュー</h2>
+                        <h2 className="text-xl font-semibold mb-4 text-gray-800">プレビュー</h2>
                         <canvas ref={canvasRef} className="hidden" />
                         {processedImage && (
                             <div className="mt-2">
